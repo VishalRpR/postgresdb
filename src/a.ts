@@ -29,13 +29,26 @@ client.connect();
 
 
 
-async function insertDataInTable(){
-    const response=await client.query(`
+// async function insertDataInTable(){
+//     const response=await client.query(`
 
-        insert into users(username,email,password) values('vishal','vishal@gmail.com','vishal1234')
-        `)
+//         insert into users(username,email,password)
+//          values($1,$2,$3)
+//         `,['vishal3','vishal3@gmail.com','123'])
 
-        console.log(response)
+//         console.log(response)
+// }
+
+// insertDataInTable();
+
+async function getusers(){
+         const response=await client.query(`select * from users where email=$1`,['vishal3@gmail.com'])
+
+         return response.rows[0];
 }
 
-insertDataInTable();
+
+getusers().then((data)=>{
+    console.log(data);
+})
+
